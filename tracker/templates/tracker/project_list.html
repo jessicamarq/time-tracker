@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Tracker</title>
+</head>
+
+<body>
+  <h1>Meus projetos</h1>
+
+  <hr>
+  <ul>
+    {% for project in projects %}
+    <li>
+      <strong>{{ project.name }}</strong>
+      <br>
+      Status {% if project.active %} Ativo {% else %} Inativo {% endif %}
+    </li>
+    <br>
+    {% empty %}
+    <p>Nenhum projeto cadastrado ainda. Vá no painel de admin e crie um!</p>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>
