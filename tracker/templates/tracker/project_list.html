@@ -9,8 +9,10 @@
 
 <body>
   <h1>Meus projetos</h1>
-
   <hr>
+
+  <a href="{% url 'project_create' %}">➕ Adicionar Novo Projeto</a>
+  <br><br>
   <ul>
     {% for project in projects %}
     <li>

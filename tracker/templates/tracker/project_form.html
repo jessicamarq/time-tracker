@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo Projeto</title>
+</head>
+
+<body>
+  <h1>Adicionar Novo Projeto</h1>
+  <hr>
+  <form method="POST">
+    <!-- csrf = Cross-Site Request Forgery -->
+    {% csrf_token %}
+    <!-- 'form.as_p' olha pra o arquivo forms.py e desenha os campos formatados em parágrafos -->
+    {{ form.as_p }}
+    <button type="submit">Salvar Projeto</button>
+  </form>
+</body>
+
+</html>
