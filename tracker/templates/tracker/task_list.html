@@ -1,0 +1,25 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h1>Minhas Tarefas</h1>
+<hr>
+
+<a href="{% url 'task_create' %}">➕ Adicionar Nova Tarefa</a>
+
+<br><br>
+
+<ul>
+  {% for task in tasks %}
+  <li>
+    <strong>{{ task.name }}</strong>
+    <br>
+    Projeto: {{ task.project.name }}
+    <br>
+    Status: {% if task.concluded %} Concluída ✅ {% else %} Pendente ⏳ {% endif %}
+  </li>
+  <br>
+  {% empty %}
+  <p>Nenhuma tarefa cadastrada ainda. Crie sua primeira tarefa!</p>
+  {% endfor %}
+</ul>
+{% endblock %}

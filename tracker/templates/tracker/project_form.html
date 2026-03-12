@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'tracker/base.html' %}
+{% block content %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Novo Projeto</title>
-</head>
+<h1>Adicionar novo Projeto</h1>
+<hr>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Salvar projeto</button>
+</form>
 
-<body>
-  <h1>Adicionar Novo Projeto</h1>
-  <hr>
-  <form method="POST">
-    <!-- csrf = Cross-Site Request Forgery -->
-    {% csrf_token %}
-    <!-- 'form.as_p' olha pra o arquivo forms.py e desenha os campos formatados em parágrafos -->
-    {{ form.as_p }}
-    <button type="submit">Salvar Projeto</button>
-  </form>
-</body>
+<br><br>
+<a href="{% url 'project_list' %}">⬅️ Voltar para lista</a>
 
-</html>
+{% endblock %}
