@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Project, Task
-from .forms import ProjectForm, TaskForm
+from .models import Project, Task, TimeRegister
+from .forms import ProjectForm, TaskForm, TimeRegisterForm
 
 #view que lista os projetos
 def project_list(request):
@@ -32,3 +32,17 @@ def task_create(request):
   else:
     form = TaskForm()
   return render(request, 'tracker/task_form.html', {'form': form})
+
+def time_list(request):
+  times = TimeRegister.objects.all()
+  return render(request, 'tracker/time_list.html', {'times': times})
+
+def time_create(request):
+  if request.method == 'POST':
+    form = TimeRegisterForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('time_list')
+  else: 
+    form = TimeRegisterForm()
+  return render(request, 'tracker/time_form.html', {'form': form})

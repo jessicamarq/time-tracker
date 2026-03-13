@@ -1,0 +1,16 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h1>Adicionar Registro de Tempo</h1>
+<hr>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Salvar Registro</button>
+</form>
+
+<br><br>
+
+<a href="{% url 'time_list' %}">🔙 Voltar para os registros</a>
+{% endblock %}

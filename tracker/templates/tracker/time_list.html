@@ -1,0 +1,27 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h1>Meus Registros de Tempo</h1>
+<hr>
+
+<a href="{% url 'time_create' %}">➕ Adicionar Novo Registro</a>
+
+<br><br>
+
+<ul>
+  {% for time in times %}
+  <li>
+    <strong>Tarefa: {{ time.task.name }}</strong>
+    <br>
+    Início: {{ time.start }}
+    <br>
+    Fim: {% if time.finish %} {{ time.finish }} {% else %} Em andamento... {% endif %}
+    <br>
+    Obs: {{ time.observation }}
+  </li>
+  <br>
+  {% empty %}
+  <p>Nenhum tempo registrado ainda. Comece a trabalhar!</p>
+  {% endfor %}
+</ul>
+{% endblock %}
