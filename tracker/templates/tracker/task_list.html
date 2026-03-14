@@ -16,6 +16,8 @@
     Projeto: {{ task.project.name }}
     <br>
     Status: {% if task.concluded %} Concluída ✅ {% else %} Pendente ⏳ {% endif %}
+    <br>
+    Tempo total gasto: <strong>{{ task.get_total_time }}</strong>
   </li>
   <br>
   {% empty %}

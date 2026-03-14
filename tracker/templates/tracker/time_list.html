@@ -13,9 +13,11 @@
   <li>
     <strong>Tarefa: {{ time.task.name }}</strong>
     <br>
-    Início: {{ time.start }}
+    Início: {{ time.start|date:"d/m/Y H:i" }}
     <br>
-    Fim: {% if time.finish %} {{ time.finish }} {% else %} Em andamento... {% endif %}
+    Fim: {% if time.finish %} {{ time.finish|date:"d/m/Y H:i" }} {% else %} Em andamento... {% endif %}
+    <br>
+    Duração: <strong>{{ time.get_duration }}</strong>
     <br>
     Obs: {{ time.observation }}
   </li>
