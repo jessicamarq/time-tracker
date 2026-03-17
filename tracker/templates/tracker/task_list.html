@@ -18,6 +18,9 @@
     Status: {% if task.concluded %} Concluída ✅ {% else %} Pendente ⏳ {% endif %}
     <br>
     Tempo total gasto: <strong>{{ task.get_total_time }}</strong>
+    <br>
+    <a href="{% url 'start_timer' task.id %}" style="text-decoration: none; font-size: 20px;">▶ PLAY</a>
+    <a href="{% url 'stop_timer' task.id %}" style="text-decoration: none; font-size: 20px;">⏹ STOP</a>
   </li>
   <br>
   {% empty %}

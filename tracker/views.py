@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from .models import Project, Task, TimeRegister
 from .forms import ProjectForm, TaskForm, TimeRegisterForm
 
@@ -46,3 +47,18 @@ def time_create(request):
   else: 
     form = TimeRegisterForm()
   return render(request, 'tracker/time_form.html', {'form': form})
+
+def start_timer(request, task_id):
+  task = get_object_or_404(Task, id=task_id)
+  TimeRegister.objects.create(
+    task=task,
+    start=timezone.now()
+  )
+  return redirect('task_list')
+
+def stop_timer(request, task_id):
+  active_timer = TimeRegister.objects.filter(task_id=task_id, finish__isnull=True).first()
+  if active_timer:
+    active_timer.finish = timezone.now()
+    active_timer.save()
+  return redirect('task_list')

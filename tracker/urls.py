@@ -10,4 +10,6 @@ urlpatterns = [
 
   path('registros/', views.time_list, name='time_list'),
   path('novo-registro/', views.time_create, name='time_create'),
+  path('iniciar/<int:task_id>/', views.start_timer, name='start_timer'),
+  path('parar/<int:task_id>/', views.stop_timer, name='stop_timer'),
 ]
