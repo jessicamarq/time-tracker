@@ -1,0 +1,16 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h2>Entrar no sistema</h2>
+<hr>
+
+{% if form.errors %}
+<p style="color: red;">Usuário ou senha incorretos. Tente novamente.</p>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" style="padding: 10px 20px; font-size: 16px;">Entrar</button>
+</form>
+{% endblock %}
