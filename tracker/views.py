@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 #view que lista os projetos
 def project_list(request):
-  projects = Project.objects.all()
+  projects = Project.objects.filter(user=request.user)
   return render(request, 'tracker/project_list.html', {'projects': projects})
 
 @login_required
@@ -16,7 +16,9 @@ def project_create(request):
   if request.method == 'POST':
     form = ProjectForm(request.POST)
     if form.is_valid():
-      form.save()
+      project = form.save(commit=False)
+      project.user = request.user
+      project.save()
       return redirect('project_list')
   else:
     form = ProjectForm()
@@ -25,7 +27,7 @@ def project_create(request):
 @login_required
 #Replicando o mesmo processo dos projetos para as Tarefas
 def task_list(request):
-  tasks = Task.objects.all()
+  tasks = Task.objects.filter(user=request.user)
   return render(request, 'tracker/task_list.html', {'tasks': tasks})
 
 @login_required
@@ -33,7 +35,9 @@ def task_create(request):
   if request.method == 'POST':
     form = TaskForm(request.POST)
     if form.is_valid():
-      form.save()
+      task = form.save(commit=False)
+      task.user = request.user
+      task.save()
       return redirect('task_list')
   else:
     form = TaskForm()
